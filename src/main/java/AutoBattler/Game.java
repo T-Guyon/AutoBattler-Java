@@ -2,6 +2,8 @@ package AutoBattler;
 
 import AutoBattler.ui.*;
 
+import java.util.Scanner;
+
 //Main class to launch the game
 public class Game {
     //Main function

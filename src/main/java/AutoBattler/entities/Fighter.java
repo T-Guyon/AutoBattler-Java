@@ -44,7 +44,7 @@ public abstract class Fighter {
         this.baseSpeed = speed;
         this.type = type;
         this.name = name;
-        this.id = idCounter++;
+        this.id = ++idCounter;
 
         this.hp = this.baseHp;
         this.attack = baseAttack;

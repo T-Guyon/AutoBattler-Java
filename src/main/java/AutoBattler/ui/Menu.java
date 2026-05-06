@@ -12,9 +12,8 @@ public class Menu {
     //METHODS
 
     //
-    public static void display(){
+    public static int display(){
         //Display of menu
-        Scanner sc = new Scanner(System.in);
         System.out.println("### MAIN MENU ###");
         System.out.println("1. Story Mode");
         System.out.println("2. PVP Mode");
@@ -22,7 +21,7 @@ public class Menu {
         System.out.println("4. Manual");
         System.out.println("5. Exit");
 
-        //
+        Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         switch (input) {
             case 1:
@@ -43,14 +42,14 @@ public class Menu {
 
             case 5:
                 System.out.println("Goodbye !");
-                TeamFactory.closeScanner();
-                sc.close();
-                return;
+                break;
 
             default:
                 System.out.println("Invalid option");
+                return -1;
         }
         TeamFactory.closeScanner();
         sc.close();
+        return input;
     }
 }
