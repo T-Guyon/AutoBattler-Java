@@ -67,13 +67,6 @@ public abstract class Fighter {
         this.updateSpeed(other.getSpeed());
     }
 
-    /**
-     * Default constructor
-     */
-    public Fighter() {
-        this(100, 100, 100, 100, "Fighter","Name");
-    }
-
     // ### METHODS ###
 
     /**
@@ -133,12 +126,8 @@ public abstract class Fighter {
      * @param amount The amount to heal
      */
     public void regenerateHp(int amount) {
-        if (this.hp > 0 && (this.hp + amount) <= this.baseHp) {
-            this.hp += amount;
-        } else {
-            if (this.hp > 0 && (this.hp + amount) > this.baseHp) {
-                this.hp = this.baseHp;
-            }
+        if(this.hp > 0) {
+            this.updateHp(this.hp + amount);
         }
     }
 

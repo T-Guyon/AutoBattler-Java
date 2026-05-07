@@ -12,6 +12,7 @@ public class FighterTest {
     private Fighter a;
     private Fighter m;
     private Team team;
+    private Team team2;
 
 
     @Before
@@ -23,6 +24,7 @@ public class FighterTest {
         a = new Archer();
         m = new Mage();
         team = new Team();
+        team2 = new Team();
     }
 
     @After
@@ -252,5 +254,88 @@ public class FighterTest {
         Assert.assertEquals(45,p.getAttack());
         Assert.assertEquals(25,p.getDefense());
         Assert.assertEquals(10,p.getSpeed());
+    }
+
+    @Test
+    public void FighterOtherConstructorTest(){
+        Paladin p2 = new Paladin(1,1,1,1,"1","1");
+        Fighter p3 = new Paladin(p2);
+        Assert.assertEquals(p2.getHp(),p3.getHp());
+        Assert.assertEquals(p2.getAttack(),p3.getAttack());
+        Assert.assertEquals(p2.getDefense(),p3.getDefense());
+        Assert.assertEquals(p2.getSpeed(),p3.getSpeed());
+        Assert.assertEquals(p2.getType(),p3.getType());
+        Assert.assertEquals(p2.getName(),p3.getName());
+        Assert.assertEquals(p2.getId(),p3.getId());
+    }
+
+    @Test
+    public void FighterRegenerateHpMoreThanZero(){
+        p.updateHp(10);
+        p.regenerateHp(5);
+        Assert.assertEquals(15,p.getHp());
+    }
+
+    @Test
+    public void FighterRegenerateHpLessThanZero(){
+        p.updateHp(-5);
+        p.regenerateHp(5);
+        Assert.assertEquals(-5,p.getHp());
+    }
+
+    @Test
+    public void FighterTakeDamageLessThanHp(){
+        p.joinTeam(team);
+        w.joinTeam(team2);
+        p.takeDamage(20,w);
+        Assert.assertEquals(184,p.getHp());
+    }
+
+    @Test
+    public void FighterTakeDamageMoreThanHp(){
+        p.joinTeam(team);
+        w.joinTeam(team2);
+        p.takeDamage(10000000,w);
+        Assert.assertEquals(0,p.getHp());
+    }
+
+    @Test
+    public void FighterTakeDamageMoreThanZero(){
+        p.joinTeam(team);
+        w.joinTeam(team2);
+        p.takeDamage(-1,w);
+        Assert.assertEquals(200,p.getHp());
+    }
+
+    @Test
+    public void FighterTakeMagicalDamageLessThanHp(){
+        p.joinTeam(team);
+        m.joinTeam(team2);
+        p.takeMagicalDamage(20,m);
+        Assert.assertEquals(180,p.getHp());
+    }
+
+    @Test
+    public void FighterTakeMagicalDamageMoreThanHp(){
+        p.joinTeam(team);
+        m.joinTeam(team2);
+        p.takeMagicalDamage(10000000,m);
+        Assert.assertEquals(0,p.getHp());
+    }
+
+    @Test
+    public void FighterTakeMagicalDamageMoreThanZero(){
+        p.joinTeam(team);
+        m.joinTeam(team2);
+        p.takeMagicalDamage(-1,m);
+        Assert.assertEquals(200,p.getHp());
+    }
+
+    @Test
+    public void FighterAttackTest(){
+        team.add(p);
+        team2.add(w);
+        p.attack(team2);
+        Assert.assertEquals(184,w.getHp());
     }
 }
