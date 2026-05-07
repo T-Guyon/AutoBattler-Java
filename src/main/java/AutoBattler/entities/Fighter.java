@@ -136,7 +136,7 @@ public abstract class Fighter {
         if (this.hp > 0 && (this.hp + amount) <= this.baseHp) {
             this.hp += amount;
         } else {
-            if (this.hp > 0 && (this.hp + amount) > baseHp) {
+            if (this.hp > 0 && (this.hp + amount) > this.baseHp) {
                 this.hp = this.baseHp;
             }
         }
@@ -157,45 +157,45 @@ public abstract class Fighter {
      * Fully restores current HP to the base HP
      */
     public void fullHeal() {
-        this.hp = baseHp;
+        this.hp = this.baseHp;
     }
 
     /**
      * Resets current attack to its base value
      */
     public void resetAttack() {
-        this.attack = baseAttack;
+        this.attack = this.baseAttack;
     }
 
     /**
      * Resets current defense to its base value
      */
     public void resetDefense() {
-        this.defense = baseDefense;
+        this.defense = this.baseDefense;
     }
 
     /**
      * Resets current speed to its base value
      */
     public void resetSpeed() {
-        this.speed = baseSpeed;
+        this.speed = this.baseSpeed;
     }
 
     /**
      * Resets all current stats except HP to base values
      */
     public void revertStatChanges() {
-        resetAttack();
-        resetDefense();
-        resetSpeed();
+        this.resetAttack();
+        this.resetDefense();
+        this.resetSpeed();
     }
 
     /**
      * Fully heals and resets all modified stats
      */
     public void resetStats() {
-        fullHeal();
-        revertStatChanges();
+        this.fullHeal();
+        this.revertStatChanges();
     }
 
     // ### ABSTRACT METHODS ###
@@ -349,7 +349,11 @@ public abstract class Fighter {
      * @param newHp The new current HP
      */
     public void updateHp(int newHp) {
-        this.hp = newHp;
+        if(newHp <= this.baseHp){
+            this.hp = newHp;
+            return;
+        }
+        this.hp = this.baseHp;
     }
 
     /**
@@ -358,7 +362,11 @@ public abstract class Fighter {
      * @param newAttack The new current attack value
      */
     public void updateAttack(int newAttack) {
-        this.attack = newAttack;
+        if(newAttack <= this.baseAttack){
+            this.attack = newAttack;
+            return;
+        }
+        this.attack = this.baseAttack;
     }
 
     /**
@@ -367,7 +375,11 @@ public abstract class Fighter {
      * @param newDefense The new current defense value
      */
     public void updateDefense(int newDefense) {
-        this.defense = newDefense;
+        if(newDefense <= this.baseDefense){
+            this.defense = newDefense;
+            return;
+        }
+        this.defense = this.baseDefense;
     }
 
     /**
@@ -376,7 +388,11 @@ public abstract class Fighter {
      * @param newSpeed The new current speed value
      */
     public void updateSpeed(int newSpeed) {
-        this.speed = newSpeed;
+        if(newSpeed <= this.baseSpeed){
+            this.speed = newSpeed;
+            return;
+        }
+        this.speed = this.baseSpeed;
     }
 
     /**

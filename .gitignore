@@ -5,6 +5,7 @@ target/
 .kotlin
 
 ### IntelliJ IDEA ###
+.idea/*
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/usage.statistics.xml
@@ -15,6 +16,9 @@ target/
 .idea/compiler.xml
 .idea/libraries/
 .idea/
+.idea/encodings.xml
+.idea/misc.xml
+.idea/vcs.xml
 !.idea/codeStyles/
 !.idea/inspectionProfiles/
 *.iws
