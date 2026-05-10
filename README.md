@@ -25,7 +25,7 @@ The project is currently **in progress** — the core combat system and story mo
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/AutoBattler.git
+git clone https://github.com/T-Guyon/AutoBattler.git
 cd AutoBattler
 
 # Compile and run
